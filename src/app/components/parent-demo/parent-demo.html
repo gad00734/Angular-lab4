@@ -1,0 +1,9 @@
+<div style="display: flex">
+  @for(product of products; track product.id){
+  <app-child-demo
+    [productName]="product.name"
+    [productPrice]="product.price"
+    (cardClicked)="receiveDataFromChild($event)"
+  />
+  }
+</div>

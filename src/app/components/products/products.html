@@ -1,0 +1,75 @@
+<!-- 
+========================================
+🛍️ Products Grid
+========================================
+- Grid layout that adjusts number of columns based on screen size (responsive).
+- Uses ngContainer with trackBy for performance optimization.
+-->
+<div class="container">
+  <div class="row mb-3">
+    <div class="col-md-4">
+      <label for="categorySelect" class="form-label">Filter by Category:</label>
+      <select id="categorySelect" class="form-select" [(ngModel)]="selectedId" (change)="filterProducts()">
+        <option value="0">All Categories</option>
+        <option *ngFor="let category of categories" [value]="category.id">{{ category.name }}</option>
+      </select>
+    </div>
+  </div>
+  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
+    <!-- Lecture2-Part 10:
+    ⚡ngContainer:
+    - Can't have multiple template bindings on one element. Use only one attribute prefixed with *.
+    - Used to apply *ngFor without adding extra HTML elements (no extra divs).
+    - Doesn't appear in DOM - only as a comment.
+    - Improves DOM structure.
+
+    Lecture2-Part 9:
+    ⚡trackBy:
+    - Improves performance by identifying items by unique id instead of recreating all DOM elements on changes.
+
+    ⚡Lecture2-Part 7: Built-in *ngFor Local variables:
+    - i: index (current loop number)
+    - c: count (total items, optional if needed)
+    -->
+    <ng-container
+      *ngFor="let product of products; let i = index; let c = count; trackBy: trackProduct"
+    >
+      <div class="col">
+        <app-product-card [product]="product"></app-product-card>
+      </div>
+    </ng-container>
+  </div>
+</div>
+
+<!-- 
+Lecture 3
+1. UI Libraries✅
+2. Pipes✅ (Built-in vs Custom)
+3. View Encapsulation✅
+4. Component lifecycle Methods/hooks
+5. Sharing data between components (Parent/Child)
+
+Lecture 4
+1. Services
+  Dependency Injection
+  Observable and subscribers
+  Behavior subject
+2. Sharing Data between Unrelated Components
+3. Http (provideHttpClient or Resource API)
+4. Custom Directives
+
+Lecture 5
+
+1. Routing
+  Route Configuration
+  Navigation
+  Parameterized Routes
+  Router Guard
+  Authentication and Authorization
+2. Forms
+  Template driven forms
+  Reactive forms
+  Validation
+3. Advanced Topics (State Management - Testing - Deployment)
+
+-->
