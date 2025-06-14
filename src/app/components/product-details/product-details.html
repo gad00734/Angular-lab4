@@ -3,11 +3,17 @@
     <div class="row g-0">
       <div class="col-md-4">
         <img [src]="product.thumbnail" class="img-fluid rounded-start" [alt]="product.title">
+        <div class="row mt-3">
+          <div class="col" *ngFor="let imageUrl of product.images">
+            <img [src]="imageUrl" class="img-thumbnail" style="cursor: pointer;" (click)="product.thumbnail = imageUrl" alt="Product Image">
+          </div>
+        </div>
       </div>
       <div class="col-md-8">
         <div class="card-body">
           <h5 class="card-title">{{ product.title }}</h5>
           <p class="card-text">{{ product.description }}</p>
+          <p class="card-text"><small class="text-muted">Brand: {{ product.brand }}</small></p>
           <p class="card-text"><small class="text-muted">Category: {{ product.category }}</small></p>
           <p class="card-text"><strong>Price: ${{ product.price }}</strong></p>
           <p class="card-text"><small class="text-muted">Rating: {{ product.rating.rate }} ({{ product.rating.count }} reviews)</small></p>

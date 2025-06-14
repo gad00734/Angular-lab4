@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { RouterLink, RouterLinkActive } from '@angular/router';
 import { CartService } from '../../services/cart.service';
 import { Observable } from 'rxjs';
 import { CommonModule } from '@angular/common';
@@ -7,7 +7,7 @@ import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [RouterLink, CommonModule],
+  imports: [RouterLink, RouterLinkActive, CommonModule],
   templateUrl: './header.html',
   styleUrl: './header.css'
 })
